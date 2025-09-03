@@ -1,0 +1,14 @@
+.wkl-file-picker {
+  display: flex;
+}
+
+.wkl-file-picker-icon {
+  width: 31px;
+  text-align: center;
+  vertical-align: middle;
+  opacity: .3;
+}
+
+.wkl-file-picker-icon:hover {
+  opacity: .8;
+}

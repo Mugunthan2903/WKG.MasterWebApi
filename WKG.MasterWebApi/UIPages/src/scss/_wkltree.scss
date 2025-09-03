@@ -1,0 +1,25 @@
+.wittree-title {
+    font-size: $font-size-base;
+}
+
+.wittree-node {
+    height: 25px !important;
+    display: flex;
+    align-items: center;
+}
+
+@each $tc, $value in $theme-classes {
+    .hostack-#{$tc} {
+        .wittree-node {
+            &:hover {
+                background-color:#{map-get($theme-colors, "#{$value}")}50;
+
+            }
+
+            & .wittree-node-selected {
+                color: map-get($theme-colors, "#{$value}");
+                font-weight: bolder;
+            }
+        }
+    }
+}

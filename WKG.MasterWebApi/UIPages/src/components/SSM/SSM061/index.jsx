@@ -1,0 +1,271 @@
+import React from 'react';
+import SSM061VM from './SSM061VM';
+import * as cntrl from '../../../wkl-components';
+
+class SSM061 extends cntrl.WKLComponent {
+    constructor(props) {
+        super(props, new SSM061VM(props));
+        this.inputRefs = {};
+    }
+    onLoad = () => {
+        window.setTimeout(function () {
+            if (this.VM)
+                this.VM.loadInitData();
+        }.bind(this), 100)
+    }
+    onClosing = () => {
+        this.clickAction({ id: 'btn_close' });
+        return false;
+    }
+    onChange = (e) => {
+        if (this.VM) {
+            const model = this.VM.Data.Input;
+            if (e.name)
+                model[e.name] = e.value;
+            else if (e.target && e.target.name)
+                model[e.target.name] = e.target.value;
+
+            this.updateUI();
+        }
+    };
+    onRadioChange = (e) => {
+        if (this.VM) {
+            let model = '';
+            model = this.VM.Data.Input;
+            model[e.target.name] = e.target.value;
+            this.VM.updateUI();
+        }
+    };
+    onCheckChange = (e) => {
+        if (this.VM) {
+            let model = this.VM.Data.Input;
+            model[e.target.name] = e.target.checked;
+            this.updateUI();
+        }
+    };
+    clickAction = (e) => {
+        if (this.VM) {
+            if (e) {
+                let action = e.id;
+                if (action === undefined && e.target) {
+                    action = e.target.name || e.target.id || '';
+                    e = undefined;
+                }
+                if (!action) {
+                    return;
+                }
+                try {
+                    if (e && e.stopPropagation) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        e.nativeEvent.stopImmediatePropagation();
+                    }
+                } catch (ex) { }
+                if (action === "btn_close") {
+                    this.VM.doClose(e);
+                }
+                else if (action === "btn_save") {
+                    this.VM.handleSave();
+                }
+                else if (action == "sec2_New") {
+                    this.VM.openWindow("sec2_New");
+                }
+                else if (action == "btn_sec") {
+                    this.updateUI();
+                }
+
+            }
+        }
+    }
+    setFocus(name) {
+        if (this.inputRefs && this.inputRefs[name] && this.inputRefs[name].focus) {
+            try {
+                this.inputRefs[name].focus(true);
+            }
+            catch {
+                this.inputRefs[name].focus();
+            }
+        }
+    }
+    onRefChange = (el, name) => {
+        this.inputRefs[name] = el;
+    }
+    onGridCellClick = (e, item) => {
+        if (this.VM) {
+            this.VM.setSelectedItem(e.row);
+            this.updateUI();
+        }
+    }
+    onPageChange = (e, type, val) => {
+        if (this.VM) {
+            this.VM.loadPage(e.value, e.columnOptions);
+        }
+    }
+    onEditclick = (e) => {
+        if (this.VM) {
+            this.VM.onEditclick(e);
+        }
+    }
+    columnEditButton = (e) => {
+        return (<span>
+            <button type="button" style={{ width: "27px", height: "21px" }} name="btn_Exp" hot-key="H" title={"Edit"} data-bs-toggle="tooltip" data-bs-placement="left" className="btn btn-sm btn-icon1 btn-primary me-1" onClick={() => { this.onEditclick(e.row) }}><i className="fas fa-edit" style={{ fontSize: "10px", verticalAlign: "super" }}></i> </button>
+        </span>)
+    };
+    renderGrid() {
+        const gridInfo = this.VM.Data.GridInfo;
+        gridInfo.Columns[2].onRender = this.columnEditButton;
+        const attr =
+        {
+            externalSort: true,
+            dataSource: gridInfo.Items,
+            selectedItems: [gridInfo.SelectedItem],
+            isRemoteSort: false,
+            rowSelection: true,
+            multiSelect: false,
+            paging: true,
+            totalRows: gridInfo.PageSize,
+            columns: gridInfo.Columns || [],
+            pageInfo: {
+                currentPage: gridInfo.Page,
+                totalPages: gridInfo.TotalPage,
+                totalCount: gridInfo.TotalRecords,
+                onPageChange: this.onPageChange
+            },
+            rowStyle: [
+                { className: 'inactive-row', condition: (p) => { return p['Status'] == "Inactive" } },
+            ],
+            onGridCellClick: this.onGridCellClick,
+            colResize: true
+        };
+        return (<cntrl.WKLGrid {...attr} />);
+    }
+    render() {
+        const model = this.VM.Data;
+        const dataModel = this.VM.Data.Input;
+        let title = "";
+        let showloading = false;
+        if (this.VM && this.VM.Data) {
+            showloading = model.Loading;
+            title = model.Title;
+        }
+        return (
+
+            <cntrl.WKLControl wrapperClass="modal-xl" loading={showloading} title={title}
+                showToaster={this.VM.Data.ShowToast} toasterConfig={this.VM.Data.ToastConfig} onClose={this.onClosing} context={this.props.context}>
+                <div className="window-content-area w-100 vh-100 p-3" style={{ width: "55rem" }}>
+                    <div className="container-fluid h-100 p-0">
+                        <div className='row'>
+                            <div class="accordion" id="accordionExample" style={{ width: "53rem" }}>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="wkl-window-header accordion-button p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style={{ background: "#eef2f7" }}>
+                                            Config
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body p-2">
+                                            <div className='row'>
+                                                <div className="col-md-12">
+                                                    <label className="col-form-label" >Name </label>
+                                                    <cntrl.WKLTextbox name="Prod_Name" disabled={true} value={dataModel.Prod_Name} onChange={this.onChange} placeholder="Name" maxLength={100} inputType={cntrl.WKLTextboxTypes.sentenceCase} />
+                                                </div>
+                                                <div className='col-md-5'>
+                                                    <div className='mb-2'>
+                                                        <label className="col-form-label" >Booking Fee</label>
+                                                        <cntrl.WKLTextbox ref={(el) => this.onRefChange(el, 'booking_fee')} name="booking_fee" value={dataModel.booking_fee} onChange={this.onChange} inputType={cntrl.WKLTextboxTypes.numeric} numericType={cntrl.WKLNumericTypes.both} prefix={10} suffix={2}></cntrl.WKLTextbox>
+                                                    </div>
+                                                    <div className='mb-1'>
+                                                        <label className="col-form-label" >Booking Fee Type</label>
+                                                        <div className="form-control border-0 ps-0">
+                                                            <div className="form-check  form-check-inline">
+                                                                <input type="radio" className="form-check-input mt-2" id="fee_type_P" radioGroup="fee_type" name="bkfee_type" checked={dataModel.bkfee_type === model.radios.percentage} onChange={this.onRadioChange} value={model.radios.percentage} />
+                                                                <label className="col-form-label" htmlFor="fee_type_P">Percentage</label>
+                                                            </div>
+                                                            <div className="form-check  form-check-inline">
+                                                                <input type="radio" className="form-check-input mt-2" id="fee_type_F" radioGroup="fee_type" name="bkfee_type" checked={dataModel.bkfee_type === model.radios.fixed} onChange={this.onRadioChange} value={model.radios.fixed} />
+                                                                <label className="col-form-label" htmlFor="fee_type_F">Fixed</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {/* <div className='col-md-2'>
+                                                    <label className="col-form-label" htmlFor="status_act_inact">Status</label>
+                                                    <div className="col-md-3 mt-2">
+                                                        <input id="status_act_inact" className="form-check-input" type="checkbox" name="status_act_inact" checked={dataModel.status_act_inact} onChange={this.onCheckChange} style={{ width: "20px", height: "20px" }} />
+                                                    </div>
+                                                </div> */}
+                                                <div className="col-md-5">
+                                                    <div className='mb-2'>
+                                                        <label className="col-form-label" >Adult Price </label>
+                                                        <cntrl.WKLTextbox name="Adult_price" value={dataModel.Adult_price} onChange={this.onChange} inputType={cntrl.WKLTextboxTypes.numeric} numericType={cntrl.WKLNumericTypes.positive} prefix={10} suffix={2} />
+                                                    </div>
+                                                    <div className="mb-1">
+                                                        <label className="col-form-label" >Child Price </label>
+                                                        <cntrl.WKLTextbox name="Child_price" value={dataModel.Child_price} onChange={this.onChange} inputType={cntrl.WKLTextboxTypes.numeric} numericType={cntrl.WKLNumericTypes.positive} prefix={10} suffix={2} />
+                                                    </div>
+                                                </div>
+                                                <div className='col-md-2'>
+                                                    <div className='mb-2'>
+                                                        <label className="col-form-label" htmlFor="adt_avail">Allow Adult</label>
+                                                        <div className="col-md-3 mt-2">
+                                                            <input id="adt_avail" className="form-check-input" type="checkbox" name="Adult_avail" checked={dataModel.Adult_avail} onChange={this.onCheckChange} style={{ width: "20px", height: "20px" }} />
+                                                        </div>
+                                                    </div>
+                                                    <div className='mb-1'>
+                                                        <label className="col-form-label" htmlFor="chld_avail">Allow Child</label>
+                                                        <div className="col-md-12 mt-2">
+                                                            <input id="chld_avail" className="form-check-input" type="checkbox" name="Child_avail" checked={dataModel.Child_avail} onChange={this.onCheckChange} style={{ width: "20px", height: "20px" }} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label className="col-form-label" >Sort </label>
+                                                    <cntrl.WKLTextbox name="Sort_order" value={dataModel.Sort_order} ref={(el) => this.onRefChange(el, 'Sort_order')} onChange={this.onChange} inputType={cntrl.WKLTextboxTypes.numeric} numericType={cntrl.WKLNumericTypes.positive} prefix={4} suffix={0} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button onClick={(e) => this.clickAction({ id: 'btn_sec' })} data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="wkl-window-header accordion-button p-2" type="button" style={{ background: "#eef2f7" }}>
+                                            Product Name
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body p-2">
+                                            <div className='row'>
+                                                <div className="col-md-12 mb-3 px-3">
+                                                    <div className='d-flex' style={{ justifyContent: "end", paddingTop: "10px" }}>
+                                                        <button type="button" id="btn_add_new" hot-key="L" className="btn btn-sm btn-clear1 btn-primary me-1" onClick={(e) => this.clickAction({ id: 'sec2_New' })}><i className="fa fa-add"></i> Add New</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='col-md-12'>
+                                                {this.renderGrid()}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="window-button-area">
+                    <div className="row" style={{ justifyContent: "end" }}>
+                        <div className="col-auto">
+                            <cntrl.WKLButtonWrapper id="btn_save" formID={model.FormID} onClick={(e) => this.clickAction({ id: 'btn_save' })}>
+                                <button type="button" hot-key="S" className="btn btn-sm btn-close1 btn-primary me-1" ><i className="fa fa-save"></i> Save</button>
+                            </cntrl.WKLButtonWrapper>
+                            <button type="button" id="btn_close" hot-key="C" className="btn btn-sm btn-close1 btn-primary me-1" onClick={(e) => this.clickAction({ id: 'btn_close' })}><i className="fa fa-close"></i> Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </cntrl.WKLControl>
+
+        );
+    }
+}
+
+export default SSM061;

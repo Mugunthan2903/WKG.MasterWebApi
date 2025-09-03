@@ -1,0 +1,229 @@
+.wkl-control {
+    /* left: 0px;
+    top: 0px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: auto; */
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    user-select: 'none';
+    outline: 'none';
+    z-index: 1080;
+}
+
+.wkl-window {
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+
+}
+
+.wkl-content {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.wkl-content-scroll-y {
+    overflow: hidden !important;
+}
+
+.wkl-dialog {
+    /* background-color: white;
+   background-color: #fff; */
+    outline: 0;
+    background-clip: padding-box;
+    /* border: 1px solid #dee2e6;
+   box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%); */
+
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.wkl-control.left {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.wkl-control.top {
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.wkl-control.center {
+    justify-content: center;
+    align-items: center
+}
+
+.wkl-control.slide-left {
+    justify-content: right;
+    overflow-x: hidden;
+}
+
+.wkl-control.slide-top {
+    align-items: flex-end;
+    overflow-y: hidden;
+}
+
+.wkl-control.slide-bottom {
+    align-items: flex-start;
+}
+
+.wkl-dialog.maximize {
+    width: 100%;
+    height: 100%;
+}
+
+.wkl-dialog.slide-left {
+    transform: translateX(100%);
+    transition: transform .7s ease .05s;
+    visibility: hidden;
+    border-left: 1px solid #dee2e6;
+    background: #FFF;
+}
+
+.wkl-dialog.slide-top {
+    /* width: 0%; */
+    transform: translateY(100%);
+    transition: transform .7s ease .05s;
+    visibility: hidden;
+    border-top: 1px solid #dee2e6;
+    width: 100%;
+    /* background: #FFF; */
+}
+
+.wkl-dialog.slide-right {
+    /* width: 0%; */
+    transform: translateX(-100%);
+    transition: transform .7s ease .05s;
+    visibility: hidden;
+    border-right: 1px solid #dee2e6;
+    background: #FFF;
+}
+
+.wkl-dialog.slide-bottom {
+    /* width: 0%; */
+    transform: translateY(-100%);
+    transition: transform .7s ease .05s;
+    visibility: hidden;
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+    /* background: #FFF; */
+}
+
+.wkl-dialog.slide-bottom.show,
+.wkl-dialog.slide-top.show {
+    /* visibility: visible;
+    transform: none; */
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.wkl-dialog.slide-right.show,
+.wkl-dialog.slide-left.show {
+    /* visibility: visible;
+    transform: none; */
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.wkl-window-header {
+    /* color: #010611;
+    background-color: #e8f1f3;
+    border-color: #b7b9bf;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding:  1rem 1rem; */
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: .9rem;
+    padding: .75rem;
+    /* border-bottom: 3px solid #55aad6; */
+    font-weight: 500;
+    background-color: #eef2f7;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.wkl-header-title {
+    flex: 1 0;
+    margin: 0;
+    line-height: 26px;
+    letter-spacing: .5px;
+    font-weight: 600;
+}
+
+.wkl-window-close {
+    flex: 0 0 auto;
+    width: auto;
+    margin-right: -4px;
+    margin-left: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: 0 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wkl-window-close:hover {
+    color: red;
+}
+
+.wkl-window-body-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;
+    background: #FFF;
+}
+
+.wkl-control.slide-left .wkl-window-body-container {
+    border-left: none !important;
+}
+
+.wkl-window-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.wkl-window-footer,
+.window-button-area {
+    padding: .75rem;
+    font-weight: 500;
+    background-color: #eef2f7;
+    border-top: 1px solid #dee2e6;
+}
+
+.wkl-dialog-hoster {
+    z-index: 1083 !important;
+}
+
+
+.wkl-container .window-header {
+    align-items: center;
+    border-bottom: 3px solid #55aad6;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: center;
+    padding: 0.25rem;
+
+}

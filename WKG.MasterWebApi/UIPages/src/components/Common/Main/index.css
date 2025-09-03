@@ -1,0 +1,119 @@
+html {
+    height: -webkit-fill-available;
+    margin: 0
+}
+
+.content-page {
+    margin-left: 0 !important;
+    overflow: hidden;
+    padding: 70px 0px 32.61px 0px;
+    min-height: 100vh;
+
+    min-height: 100%;
+    min-width: 100%;
+    background-color: #f1f3fa !important;
+
+    display: grid;
+}
+
+.content-page .content {
+    margin-left: 90px;
+    background-color: #fff;
+}
+
+/* Set this class to root div (html page)*/
+.fixed-app {
+    overflow: hidden;
+}
+
+.fixed-app .content-page>.content {
+    position: relative;
+}
+
+.fixed-app .content-page>.content>.wkl-tab {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.fixed-app .content-page>.content>.wkl-tab>.wkl-container {
+    overflow: hidden;
+}
+
+
+.footer {
+    border-top: 1px solid rgba(152, 166, 173, .2);
+    bottom: 0;
+    padding: 5px 24px 5px 0px;
+    position: fixed;
+    right: 0;
+    color: #98a6ad;
+    left: 90px;
+
+    /* background: linear-gradient(
+        135deg
+        , #FFF 0, #FFF 60%);
+        -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+        box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15); */
+}
+
+.footer .footer-links a {
+    color: #98a6ad;
+    margin-left: 1.5rem;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+
+.footer .footer-links a:first-of-type {
+    margin-left: 0;
+}
+
+.footer-links a {
+    outline: 0 !important;
+    text-decoration: none;
+}
+
+.wkl-page-footer {
+    z-index: 1080;
+}
+
+/* .w-40 {
+    width: 40%;
+}
+
+.tab {
+    border-radius: 3px 3px 0px 0px;
+    color: white;
+    margin-top: -6px;
+    height: 40px !important;
+}
+
+.tab .selected {
+    color: #000000;
+    border-radius: 12px 12px 0px 0px;
+    height: 30px !important;
+    font-weight: 500;
+    margin-top: 0px;
+    border-bottom: 4px solid white;
+    background: rgb(177, 172, 211) !important;
+    color: white;
+}
+
+.tabitem {
+    font-size: 14px !important;
+    border-radius: 12px 12px 0px 0px;
+    background-color: #36367c !important;
+    color: white;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 4px !important;
+}
+
+.tabitem:hover {
+    background-color: #ffffff85 !important;
+    margin-top: 0px;
+    height: 30px;
+    border-radius: 12px 12px 0px 0px;
+} */

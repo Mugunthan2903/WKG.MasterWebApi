@@ -1,0 +1,176 @@
+/*Colors*/
+@each $tc,
+$value in $theme-classes {
+    .hostack-#{$tc} {
+
+        .grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header .grid-ui-col,
+        .grid-ui-wrapper .grid-ui-footer-wrapper,
+        .grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header {
+            //background-color:map-get($ui-colors, "grid-header-#{$value}"); 
+            background-color:#{map-get($theme-colors, "#{$value}")}10;
+ color:map-get($theme-colors, "#{$value}");
+            //color:map-get($ui-colors, "grid-header-text-#{$value}"); 
+
+        }
+
+        .grid-ui-wrapper {
+            border: none !important;
+            //   border-color: #{map-get($theme-colors, "#{$value}")}10;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, hsla(216, 12%, 84%, 0.3) 0px 0px 0px 1px inset;
+        }
+
+        .grid-ui-wrapper .grid-ui-scroller .grid-ui-rows-wraper .grid-ui-rows .grid-ui-row.selected {
+            background-color:map-get($ui-colors, "grid-row-selection-bg-#{$value}");
+            color: map-get($ui-colors, "grid-row-selection-text-#{$value}");
+            ;
+        }
+
+        .grid-ui-wrapper .grid-ui-footer-wrapper .grid-ui-footer .grid-ui-footer-pager .grid-ui-pager-icon {
+            background-color: #FFF;
+            border-color: map-get($ui-colors, "grid-header-#{$value}");
+            color:map-get($ui-colors, "grid-header-#{$value}");
+        }
+    }
+}
+
+.grid-ui-wrapper {
+    font-size: $font-size-base - 0.1rem;
+    border-radius: $border-radius;
+}
+
+.grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header>div.grid-ui-col:first-child {
+    border-left: unset !important;
+}
+
+.grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header>div {
+    border-left-color: #efefef75;
+    border-left-style: outset;
+    border-bottom: unset !important;
+    padding-left: 0.25rem !important;
+    font-size: $font-size-base !important;
+}
+
+.grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header>div:first {
+    border-left: none !important;
+}
+
+.grid-ui-wrapper .grid-ui-scroller .grid-ui-rows-wraper .grid-ui-rows .grid-ui-row>div {
+    border-bottom-color: #EFEFEF;
+}
+
+.grid-ui-wrapper .grid-ui-footer-wrapper .grid-ui-footer .grid-ui-footer-pager .grid-ui-pager-icon {
+    line-height: 22px !important;
+}
+
+.grid-ui-wrapper .grid-ui-footer-wrapper .grid-ui-footer .grid-ui-footer-pager .grid-ui-pager-icon:hover {
+    background-color: #dce9f9;
+    border-color: #FFF;
+}
+
+.grid-ui-wrapper .grid-ui-footer-wrapper .grid-ui-footer .grid-ui-footer-pager input {
+    border-color: #f7f7f7;
+    border-radius: $border-radius;
+}
+
+.grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header .grid-ui-col,
+.grid-ui-wrapper .grid-ui-scroller .grid-ui-rows-wraper .grid-ui-rows .grid-ui-row .grid-ui-cell {
+    padding-left: $input-btn-padding-x-sm !important;
+}
+
+.grid-ui-context-menu {
+    -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    background-color: #FFF;
+}
+
+.grid-ui-context-menu-item:hover {
+    background-color: #f8f8f8;
+}
+
+.grid-ui-context-menu-item.divider-start::before {
+    border-top-color: rgb(196, 222, 229);
+}
+
+.grid-ui-context-menu-item.divider-end::after {
+    border-bottom-color: rgb(196, 222, 229);
+}
+
+.grid-ui-wrapper .grid-ui-scroller .grid-ui-rows-wraper .grid-ui-rows .grid-ui-row.group-row .grid-ui-group-cell {
+    border-color: #EFEFEF;
+}
+
+.grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header .grid-ui-col input[type="text"] {
+    background-color: #F7F7F7 !important;
+    border-bottom-color: rgba(68, 132, 164, 0.18) !important;
+}
+
+.grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header .grid-ui-col .filterInput.showType::after {
+    background-color: rgb(68, 131, 163);
+    color: #FFF;
+}
+
+.grid-ui-wrapper .grid-ui-scroller .grid-ui-rows-wraper .grid-ui-rows .grid-ui-row .grid-ui-cell:last-child {
+    border-right-color: #EFEFEF !important;
+}
+
+.grid-ui-wrapper .grid-ui-scroller .grid-ui-rows-wraper .grid-ui-rows .grid-ui-row.active-selection {
+    background-color: #aaddcc2b;
+}
+
+.grid-ui-wrapper .grid-ui-scroller .grid-ui-rows-wraper .grid-ui-rows .grid-ui-row:hover {
+    -webkit-box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+
+}
+
+.wit-grid-export-wrapper {
+    border-left-color: var(--primary);
+}
+
+.grid-ui-wrapper .grid-ui-header-wrapper .grid-ui-header .grid-ui-col {
+    // -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    // -moz-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    // box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    // text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+.grid-ui-wrapper .grid-ui-scroller::-webkit-scrollbar-button {
+    background: #ccc;
+
+}
+
+.grid-ui-wrapper .grid-ui-scroller::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+​ .grid-ui-wrapper .grid-ui-scroller::-webkit-scrollbar-track-piece {
+    background: #eee;
+}
+
+.wit-grid-loader {
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.row-adv-menu .more-view li:hover {
+    background-color: #f7f7f7;
+
+}
+
+.row-adv-menu .more-view {
+
+    border-top-width: 3px !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-top-color: var(--primary) !important;
+}
+
+.row-adv-menu {
+    color: #000 !important;
+}
+
+.row-adv-menu .icon-view {
+
+    color: #000 !important;
+}
+
+/*Colors*/

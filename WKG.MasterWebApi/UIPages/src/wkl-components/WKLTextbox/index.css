@@ -1,0 +1,94 @@
+:root {
+--text-color: #ced4da;
+}
+
+.has-clear, .has-icon  {
+  position: relative;
+}
+
+.has-clear .form-control, .has-icon .form-control  {
+  padding-right: calc(16px + 4px);
+}
+
+has-clear .form-control-sm, .has-icon .form-control-sm  {
+  padding-right: 27px;
+}
+has-clear .form-control-lg, .has-icon .form-control-lg  {
+  padding-right: 34px;
+}
+
+
+.has-clear.has-icon .form-control  {
+  padding-right: calc(32px + 4px);
+  z-index: 1;
+}
+.has-clear.has-icon .form-control-sm  {
+  padding-right: 54px;
+  z-index: 1;
+}
+.has-clear.has-icon .form-control-lg  {
+  padding-right: 68px;
+  z-index: 1;
+}
+
+
+
+.form-control-icons
+{
+  position: absolute;
+  top: 0;
+  right: 4px;
+  text-align: center;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  
+  z-index: 1;
+  pointer-events: auto;
+  cursor: pointer;
+
+  
+}
+.form-control:enabled + .form-control-icons > *:hover
+{
+  opacity: .8 !important;
+  
+}
+
+.has-clear .form-control-icon, .has-icon .form-control-icons {
+  width: 16px;
+  
+}
+
+.has-clear .form-control-icons-sm, .has-icon .form-control-icons-sm {
+  width: 27px;
+}
+
+.has-clear .form-control-icons-lg, .has-icon .form-control-icons-lg {
+  width: 34px;
+}
+
+
+.has-clear.has-icon .form-control-icons {
+  width: 32px;
+}
+.has-clear.has-icon .form-control-icons-sm {
+  width: 54px;
+}
+.has-clear.has-icon .form-control-icons-lg {
+  width: 68px;
+}
+
+.form-control-icons > .form-control-icon 
+{
+  flex: 1 0 0%;
+  opacity: .3;
+}
+/* .form-control-icons > .form-control-icon:last-child
+{
+  opacity: 1 !important;
+} */  

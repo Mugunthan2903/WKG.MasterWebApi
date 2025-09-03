@@ -1,0 +1,8 @@
+@mixin theme-variant($value) {
+    background: theme-color($value);
+    background: -webkit-linear-gradient(top, theme-color($value), theme-color("#{$value}-variant"));
+    background: -moz-linear-gradient(top, theme-color($value), theme-color("#{$value}-variant"));
+    background: linear-gradient(to bottom, theme-color($value), theme-color("#{$value}-variant"));
+    color: color("theme-#{$value}");
+  }
+  

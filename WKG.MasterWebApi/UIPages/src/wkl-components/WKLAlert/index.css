@@ -1,0 +1,56 @@
+.wkl-alert-dialog {
+    /* background-color: white;
+   background-color: #fff;
+   outline: 0;
+   background-clip: padding-box; */
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}
+
+.wkl-dialog-hoster {
+    z-index: 1083 !important;
+}
+
+.wkl-alert-header,
+.wkl-alert-body,
+.wkl-alert-footer {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.wkl-alert-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.wkl-alert-body-icon {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.wkl-alert-body-text {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.wkl-alert-container {
+    background: #FFF;
+    min-width: 400px;
+    max-width: 100%;
+    /* border-top: 3px solid #DEDEDE; */
+}
+
+.mx-h-90 {
+    max-height: 90%;
+}

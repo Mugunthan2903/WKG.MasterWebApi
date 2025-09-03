@@ -1,0 +1,22 @@
+.pointer
+{
+    cursor: pointer;
+}
+
+.mxw
+{
+    max-width: 0px;
+}
+.overflow-y-scroll
+{
+    overflow-y: auto !important;
+}
+.overflow-x-scroll
+{
+    overflow-x: auto !important;
+}
+
+/*google place search*/
+.pac-container {
+    z-index: 1084 !important;
+}

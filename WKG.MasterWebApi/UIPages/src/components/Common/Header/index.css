@@ -1,0 +1,164 @@
+.navbar-custom {
+    padding: 0 24px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 35px 0 rgb(154 161 171 / 15%);
+    box-shadow: 0 0 35px 0 rgb(154 161 171 / 15%);
+    min-height: 70px;
+    position: fixed;
+    left: 90px;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+}
+
+.navbar-custom .topbar-menu {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar-custom .topbar-menu .nav-link {
+    padding: 0;
+    color: #98a6ad;
+    min-width: 32px;
+    display: block;
+    text-align: center;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-user {
+    padding: calc(31px / 2) 20px calc(31px / 2) 57px !important;
+    text-align: left !important;
+    position: relative;
+    background-color: #fafbfd;
+    border: 1px solid #f1f3fa;
+    border-width: 0 1px;
+    min-height: 70px;
+    max-height: 70px;
+}
+
+.nav-link {
+    display: block;
+    color: #727cf5;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    padding: .5rem 1rem;
+}
+
+.navbar-custom .topbar-menu li {
+    float: left;
+    max-height: 70px;
+}
+
+.nav-user .account-user-avatar {
+    position: absolute;
+    top: calc(38px / 2);
+    left: 15px;
+}
+
+.nav-user .account-user-avatar img {
+    height: 32px;
+    width: 32px;
+}
+
+.navbar-custom .topbar-menu .nav-link {
+    padding: 0;
+    color: #98a6ad;
+    min-width: 32px;
+    display: block;
+    text-align: center;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-user .account-user-name {
+    display: block;
+    font-weight: 600;
+}
+
+.nav-user .account-position {
+    display: block;
+    font-size: 12px;
+    margin-top: -3px;
+}
+
+.navbar-custom .app-search {
+    position: static;
+    overflow-y: hidden;
+}
+
+.navbar-custom .app-search form {
+    padding: calc(32px / 2) 5px calc(32px / 2) 0;
+    overflow: hidden;
+    max-width: 320px;
+}
+
+.app-search .form-control {
+    border: none;
+    height: calc(1.5em + .9rem + 2px);
+    padding-left: 40px;
+    padding-right: 20px;
+    background-color: #f1f3fa;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.app-search span.search-icon {
+    position: absolute;
+    z-index: 9;
+    font-size: 20px;
+    line-height: 38px;
+    left: 10px;
+    top: 0;
+}
+
+.app-search .input-group-text {
+    margin-left: 0;
+    z-index: 4;
+}
+
+.button-menu-mobile {
+    border: none;
+    color: #313a46;
+    height: 70px;
+    line-height: 70px;
+    width: 60px;
+    background-color: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    float: left;
+    z-index: 1;
+    position: relative;
+    margin-left: -24px;
+}
+
+.app-search span.search-icon {
+    position: absolute;
+    z-index: 9;
+    font-size: 20px;
+    line-height: 38px;
+    left: 10px;
+    top: 0;
+}
+
+.dd-items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.dd-items .material-icons {
+    margin-right: 0.25rem;
+}
+
+.wkl-navbar-top {
+    z-index: 1080;
+}
+
+.wkl-fs-container>span {
+    padding: 5px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}

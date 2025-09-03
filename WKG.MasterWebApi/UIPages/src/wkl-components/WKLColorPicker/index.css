@@ -1,0 +1,36 @@
+.wkl-color-picker {
+    display: flex;
+}
+
+.wkl-color-picker-icon {
+    width: 20px;
+    text-align: center;
+    vertical-align: middle;
+    opacity: .3;
+}
+
+.wkl-color-picker-icon:hover {
+    opacity: .8;
+}
+
+
+.color-swatch {
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+
+.color-menu {
+    position: absolute;
+    z-index: 2;
+}
+
+.cover {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}

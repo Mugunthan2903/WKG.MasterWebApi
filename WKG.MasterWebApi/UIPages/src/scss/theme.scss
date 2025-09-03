@@ -1,0 +1,188 @@
+$blue: #0d6efd !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #d63384 !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #198754 !default;
+$teal: #20c997 !default;
+$cyan: #0dcaf0 !default;
+$secondary: #6c757d !default;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+// $theme-color-primary: #18788b !default;
+// $theme-color-secondary: #1181B2 !default;
+// $theme-color-primary: #02a6d3 !default;
+// $theme-color-secondary: #02a6d3 !default;
+
+$theme-color-primary: #008bb2 !default;
+$theme-color-secondary: #008bb2 !default;
+
+
+$theme-colors: (
+  "primary": $theme-color-primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "search": $theme-color-primary,
+  "clear": $theme-color-primary,
+  "add": $theme-color-primary,
+  "save": $theme-color-primary,
+  "edit": $theme-color-primary,
+  "delete": $theme-color-primary,
+  "audit": $theme-color-primary,
+  "close": $theme-color-primary,
+  "copy":$theme-color-primary,
+  'grey':#DEDEDE,
+  'bookout':$theme-color-primary,
+  'checkin':$theme-color-primary,
+  'confirmation':$theme-color-primary,
+  'checkout':$theme-color-primary,
+  'cxlreservation':$theme-color-primary,
+  'noshow':$theme-color-primary,
+  'waitinglist':$theme-color-primary,
+  'primary-light':$theme-color-primary,
+  'user-active':$theme-color-primary,
+);
+$theme-button-colors: (
+  "primary": #FFF,
+  "secondary": #FFF,
+  "search": #FFF,
+  "clear": #FFF,
+  "add": #FFF,
+  "save": #FFF,
+  "edit": #FFF,
+  "delete": #FFF,
+  "audit": #FFF,
+  "close": #FFF,
+  "copy":#FFF,
+  'gray':#FFF,
+  'bookout':#FFF,
+  'checkin':#FFF,
+  'confirmation':#FFF,
+  'checkout':#FFF,
+  'cxlreservation':#FFF,
+  'noshow':#FFF,
+  'waitinglist':#FFF,
+  'primary-light':#FFF,
+  'user-active':#FFF,
+);
+$theme-classes: (
+  "skyliteblue":"primary"
+);
+
+$header-colors: (
+  "infobox-primary":#B9FFF7,
+  "divider-primary":#49c0cf,
+
+  "infobox-purple":#e2a4d0,
+  "divider-purple":#FFF,
+
+  "infobox-orange":#e2a4d0,
+  "divider-orange":#FFF
+);
+$ui-colors: (
+  "bg-primary":#FFF,
+  "text-primary":#FFF,
+
+  "border-primary":#0ad1f7,
+  "loginbox-primary":#F2F3FC,
+  "bg-body-primary":#DDE9E8,
+  "tabitem-text-primary":#707070,
+  "grid-header-primary":#44449b8f,
+  "grid-header-text-primary":#FFF,
+  "grid-row-selection-bg-primary":#44449b09,
+  "grid-row-selection-text-primary":#44449B,
+
+  "bg-purple":#f1f1f1,
+  "text-purple":#7a7a7a,
+  "border-purple":#bab6b0,
+  "bg-body-purple":#c6dfdd,
+  "tabitem-text-purple":#7a7a7a,
+
+  "bg-orange":#f1eace,
+  "text-orange":#575656,
+  "border-orange":#bab6b0,
+  "bg-body-orange":#6bcdcc,
+  "tabitem-text-orange":#575656
+);
+
+$border-radius: .2rem !default;
+
+$font-family-Roboto: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-sans: 'Nunito Sans', sans-serif;
+
+$font-family-base: $font-family-sans !default;
+$font-size-base: 0.9rem !default;
+$input-font-weight: 500 !default;
+
+$input-btn-padding-y: .275rem !default;
+$input-btn-padding-x: .75rem !default;
+$table-cell-padding-y :$input-btn-padding-y !default;
+$table-cell-padding-x: $input-btn-padding-x !default;
+$btn-box-shadow: none !important;
+
+$input-btn-padding-y-sm: .25rem !default;
+$input-btn-padding-x-sm: .5rem !default;
+
+
+
+$input-btn-padding-y-lg: .5rem !default;
+$input-btn-padding-x-lg: 1rem !default;
+
+$form-group-label-font-size: $font-size-base !default;
+$form-label-margin-bottom: .125rem !default;
+$input-btn-font-family: $font-family-Roboto !default;
+
+$input-box-shadow: none !default;
+$input-focus-box-shadow: none !default;
+
+
+//== Panels
+//
+//##
+
+$panel-bg: #fff;
+
+// Panel Header
+$panel-heading-padding: 0 0.5rem;
+$panel-heading-font-color: #666;
+$panel-heading-font-size: 0.813rem;
+$panel-heading-font-weight: 600;
+$panel-heading-bg: #fafafa;
+$panel-heading-border-color: #eee;
+
+// Panel Body
+$panel-body-padding: 1rem;
+
+// Panel Footer
+$panel-footer-bg: #fafafa;
+$panel-footer-padding: 0.625rem 1rem;
+
+// Panel Border Settings
+$panel-border-color: #e7e7e7; // Contextual classes apply colored borders. ie: ".panel-info"
+$panel-border-radius: 0.125rem;
+$panel-inner-border: #eee;
+
+
+
+
+$list-group-item-padding-y: .3rem !default;
+$list-group-item-padding-x: 0.5rem !default;
+
+
+@import "../scss/mixins/theme";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../scss/shadow_alt";
+@import "../scss/wklcontrols";
+@import "../scss/wklselect";
+@import "../scss/wc_calendar";
+@import "../scss/base-layout";
+@import "../scss/animate";
+@import "../scss/wklgrid";
+@import "../scss/wkltree";

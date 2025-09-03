@@ -1,0 +1,98 @@
+.wit-dd-item-wrapper {
+  font-size: $font-size-base;
+
+  border-radius: $border-radius;
+}
+
+.wit-dd-selected-item {
+  font-weight: $input-font-weight;
+}
+
+.wit-dd-wraper:focus,
+.wit-dd-wraper.menu-open {
+  border-radius: $border-radius;
+  ;
+}
+
+.wit-dd-list-wrapper {
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  border-top: unset !important;
+}
+
+.wit-dd-list-search i.left-ico {
+  left: 4px;
+  ;
+}
+
+.wit-dd-list-search input {
+  padding-left: 20px !important;
+}
+
+.wit-dd-list-selected-items .badge-wit {
+  line-height: 12px;
+}
+
+.wit-dd-selected-item {
+  font-weight: $input-font-weight + 200 !important;
+}
+
+.wit-dd-selected-item.placeholder-ddl {
+  cursor: default !important;
+  color: $input-placeholder-color;
+  // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+  opacity: 1;
+}
+
+@each $tc,
+$value in $theme-classes {
+  .hostack-#{$tc} {
+
+    .wit-dd-list-search input:focus,
+    .wit-dd-item-wrapper:focus {
+      border-color: map-get($theme-colors, "#{$value}") !important;
+    }
+
+    .wit-dd-wraper:focus,
+    .wit-dd-wraper.menu-open {
+      border-color: map-get($theme-colors, "#{$value}") !important;
+    }
+
+    .wit-dd-list-search input {
+      border-bottom: 1px solid map-get($theme-colors, "#{$value}");
+    }
+
+    .wit-dd-list-selected-items .badge-wit {
+      background-color: map-get($theme-colors, "#{$value}");
+      color: map-get($theme-button-colors, "#{$value}") !important;
+
+    }
+
+    .wit-dd-list-selected-items .badge-wit:hover {
+      background-color:#{map-get($theme-colors, "#{$value}")}50;
+ color:map-get($theme-colors, "#{$value}") !important;
+    }
+
+    .wit-dd-list-items ul li:hover,
+    .wit-dd-list-items .focused {
+      background-color:#{map-get($theme-colors, "#{$value}")}60;
+
+    }
+
+    .wit-dd-list-items ul li.selected {
+      background-color: #{map-get($theme-colors, "#{$value}")}80;
+ color: #{map-get($ui-colors, "text-#{$value}")};
+
+    }
+
+    .wddlm-hdr {
+      background-color:#{map-get($theme-colors, "#{$value}")}20 !important;
+ height: 25px;
+      width: 100%;
+    }
+
+    .wddlm-row.selected {
+      background-color: map-get($ui-colors, "grid-row-selection-bg-#{$value}");
+    }
+  }
+}

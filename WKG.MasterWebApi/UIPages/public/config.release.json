@@ -1,0 +1,6 @@
+{
+    "ServiceUrl": "/api",
+    "LoginUrl": "/api",
+    "ReportUrl": "http://localhost:7038/Report.aspx",
+    "GmapKey": "AIzaSyA6HyZElVNJGuqg6Y0hnnDCO8RTkx7L_G8"
+}

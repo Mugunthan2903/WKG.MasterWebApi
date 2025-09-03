@@ -1,0 +1,102 @@
+body .sidebar-menu {
+    display: block
+}
+
+.sidebar-menu {
+    -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+    box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+    z-index: 10 !important;
+    padding-top: 70px;
+    height: 100vh;
+    /*/calc(100vh - 70px);*/
+    background: linear-gradient(135deg, #FFF 0, #FFF 60%);
+    bottom: 0;
+    position: fixed;
+    top: 0;
+    width: 90px;
+    display: none;
+}
+
+.sidebar-menu .logo {
+    position: absolute;
+    top: 0;
+    display: inline-flex;
+    justify-content: center;
+    height: 70px;
+    width: 100%;
+    align-items: center;
+}
+
+.sidebar-menu-holder,
+.sidebar-menu-holder>.nav {
+    width: 90px;
+    max-width: 90px;
+}
+
+.has-submenu {
+    max-width: 90px;
+    overflow: hidden;
+}
+
+.has-submenu:hover .menu-mega-view {
+    display: block;
+    padding: 1rem;
+    background: linear-gradient(135deg, #FFF 0, #FFF 60%);
+    color: #000;
+    display: flex;
+    overflow-y: auto;
+    align-items: flex-start;
+}
+
+.menu-mega-view ul.menu-category {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+ul.menu-category li.title {
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    margin-bottom: 1rem;
+    padding-left: 0rem !important;
+}
+
+ul.menu-category li:not(.title) {
+    cursor: pointer;
+}
+
+ul.menu-category li {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 2rem;
+}
+
+ul.menu-category li:hover {
+    text-decoration: underline;
+}
+
+.sidebar-menu .menu-mega-view {
+    min-width: 300px;
+    width: max-content;
+    -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+    box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
+    height: calc(100vh - 70px);
+    background: linear-gradient(135deg, #8f75da 0, #727cf5 60%);
+    position: absolute;
+    left: 0px;
+    margin-left: 70px;
+    top: 0;
+    z-index: 1090 !important;
+    display: none;
+}
+
+.logo svg {
+    width: 65px;
+}

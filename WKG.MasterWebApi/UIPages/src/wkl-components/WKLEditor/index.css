@@ -1,0 +1,26 @@
+/** --- figtree fonts imported */
+
+@font-face {
+    font-family: "FigtreeBoldItalic";
+    src: url("fonts/Figtree-BoldItalic.woff") format("woff");
+}
+
+@font-face {
+    font-family: "FigtreeItalic";
+    src: url("fonts/Figtree-Italic.woff") format("woff");
+}
+
+@font-face {
+    font-family: "FigtreeLight";
+    src: url("fonts/Figtree-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: "FigtreeRegular";
+    src: url("fonts/Figtree-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "FigtreeSemiBold";
+    src: url("fonts/Figtree-SemiBold.woff") format("woff");
+}

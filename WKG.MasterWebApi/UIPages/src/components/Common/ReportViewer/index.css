@@ -1,0 +1,38 @@
+.wkl-report-viewer-A4 {
+    min-width: 21.0058cm;
+    width: 21.0058cm;
+    max-width: 21.0058cm;
+    min-width: 22cm;
+    width: 22cm;
+    max-width: 22cm;
+
+    height: 100%;
+}
+
+.wkl-report-viewer-A4-landscape {
+    height: 100%;
+
+    min-width: 29.7cm;
+    width: 29.7cm;
+    max-width: 29.7cm;
+
+    min-width: 30cm;
+    width: 30cm;
+    max-width: 30cm;
+
+}
+
+.wkl-report-viewer-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wkl-report-viewer {
+    width: 100%;
+    height: 100%;
+    background-color: #8080803b;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}

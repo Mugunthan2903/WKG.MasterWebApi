@@ -1,0 +1,111 @@
+.login-page.bg-cover {
+    /* background-image: url('../../../resources/cover-login-1.jpg'); */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.login-page .full-height {
+    display: flex;
+    height: 100vh !important;
+}
+
+.login-page .login-box {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #1a7cb9ce !important; */
+    flex-direction: column;
+}
+
+.login-page .login-area {
+    width: 60%;
+    height: auto;
+    padding: 15px;
+    border-radius: 5px;
+    /* border:1px solid #DEDEDE; */
+    /* background-color: #DEDEDE50; */
+    /* color: #FFF; */
+}
+
+.login-page .loader-container {
+    position: absolute;
+    display: flex;
+    width: -webkit-fill-available !important;
+    height: -webkit-fill-available !important;
+    /* background-color: #DEDEDE75; */
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-page . .form-control {
+    border-radius: 3px;
+
+}
+
+.loginOverride .wit-dd-wraper .wddsm {
+    background-color: white;
+}
+
+.loginOverride .wit-dd-wraper .wit-dd-selected-item {
+    color: #000;
+}
+
+
+.wkl-login-container .wkl-login-box {
+    max-width: 70%
+}
+
+.wkl-login-box-leftcol svg {
+    margin: 1rem
+}
+
+.wkl-login-container .login-logo {
+    height: 50px;
+}
+
+.wkl-login-box-leftcol img {
+    width: 100%
+}
+
+.wkl-login-box-rightcol #btn_signin {
+    width: 150px
+}
+
+.wkl-login-box-locked {
+    max-width: 30% !important
+}
+
+.wkl-login-box-rightcol {
+    padding: 6rem
+}
+
+.forgot-pass {
+    text-align: right;
+}
+
+@media only screen and (max-width: 600px) {
+    .wkl-login-box-rightcol {
+        padding: 2rem !Important;
+    }
+
+    .forgot-pass {
+        text-align: left !Important;
+    }
+}
+
+@media only screen and (max-width: 1399px) {
+    .wkl-login-box-rightcol {
+        padding: 3rem !Important;
+    }
+
+    .forgot-pass {
+        text-align: left !Important;
+    }
+}

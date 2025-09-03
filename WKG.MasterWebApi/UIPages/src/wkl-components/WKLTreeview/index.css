@@ -1,0 +1,82 @@
+.wittree {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.wittree li {
+    white-space: nowrap;
+}
+
+.wittree li ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wittree-node {
+    height: 18px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.wittree-hit {
+    cursor: pointer;
+}
+
+.wittree-expanded,
+.wittree-collapsed,
+.wittree-folder,
+.wittree-file,
+.wittree-checkbox,
+.wittree-indent {
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.wittree-expanded {
+    background: url('images/tree_icons.png') no-repeat -18px 0px;
+}
+
+.wittree-expanded:hover {
+    background: url('images/tree_icons.png') no-repeat -50px 0px;
+}
+
+.wittree-collapsed {
+    background: url('images/tree_icons.png') no-repeat 0px 0px;
+}
+
+.wittree-collapsed:hover {
+    background: url('images/tree_icons.png') no-repeat -32px 0px;
+}
+
+.wittree-title {
+   
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+    
+  
+    line-height: 18px;
+}
+
+.wittree-node:hover {
+   
+    color: #000000;
+}
+
+.wittree-node-selected {
+    color: #fff;
+}
+
+/* .drag-over {
+    border: 1px dashed #44449B;
+  } */
+
+  .drag-opacity {
+    opacity: 0.4;
+  }

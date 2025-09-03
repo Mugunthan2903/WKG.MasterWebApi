@@ -1,0 +1,104 @@
+.has-card-icon>.form-control-icons
+{
+    width: 40px;
+    padding-right: .4rem;
+}
+.card-input
+{
+    padding-right: 40px;
+}
+.has-card-icon>.form-control-icons
+{
+   opacity: 1;
+   cursor: default;
+}
+.has-card-icon>.form-control-icons
+{
+   opacity: 1;
+   cursor: default;
+}
+
+.card-icon{
+    height: 100%;
+    background: url('./images/general.svg'  );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.alipay-icon {
+    height: 100%;
+    background: url('./images/alipay.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.amex-icon {
+    background: url('./images/amex.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.diners-icon {
+    background: url('./images/diners.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.discover-icon {
+    background: url('./images/discover.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.elo-icon {
+    background: url('./images/elo.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.hipercard-icon {
+    background: url('./images/hipercard.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.jcb-icon {
+    background: url('./images/jcb.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.maestro-icon {
+    background: url('./images/maestro.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.mastercard-icon {
+    background: url('./images/mastercard.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.paypal-icon {
+    background: url('./images/paypal.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.spotify-icon {
+    background: url('./images/spotify.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.switch-icon {
+    background: url('./images/switch.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.unionpay-icon {
+    background: url('./images/unionpay.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.visa-icon {
+    background: url('./images/visa.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.visamaster-icon {
+    height: 100%;
+    background: url('./images/visamaster.svg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

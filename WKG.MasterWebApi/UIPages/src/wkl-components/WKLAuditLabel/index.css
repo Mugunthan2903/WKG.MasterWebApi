@@ -1,0 +1,12 @@
+.wkl-audit-label {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    background-color: #eef2f7;
+    border: 1px solid #dee2e6;
+    font-size: .85rem;
+    font-style: italic;
+    padding: 3px;
+}

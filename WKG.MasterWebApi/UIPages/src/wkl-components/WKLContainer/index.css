@@ -1,0 +1,31 @@
+.wkl-container {
+    display: block;
+    height: inherit;
+    width: inherit;
+    user-select: 'none';
+    outline: 'none';
+    position: relative;
+}
+
+.wkl-container-scroll-y {
+    overflow-y: auto;
+}
+
+.wkl-container-scroll-x {
+    overflow-x: auto;
+}
+
+.wkl-container>.wkl-control:last-child {
+    background-color: rgba(227, 235, 240, 0.7);
+    background-color: rgba(49, 58, 70, .21);
+}
+
+.wkl-container>.wkl-control:first-child {
+    background-color: inherit;
+}
+
+div[tabindex="-1"]:focus,
+div[tabindex="0"]:focus {
+    user-select: 'none';
+    outline: 0;
+}

@@ -1,0 +1,62 @@
+/* Add your custom styles here */
+.table-container {
+    margin-top: 20px;
+}
+/* Adjust the max height as needed */
+.table-container tbody {
+    max-height: 300px; 
+    overflow-y: auto;
+}
+/* Style for table headers */
+.table-container th {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #008bb210;
+    color: #008bb2;
+    vertical-align: middle;
+}
+
+/* Style for table rows */
+.table-container tr {
+    font-size: 14px;
+    vertical-align: middle;
+    padding: 0px !important;
+    font-weight:normal;
+    cursor: pointer;
+}
+.table-container tr td{
+    vertical-align: middle;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: 1px solid #ECEDF4  !important;
+}
+/* Style for active table cells */
+.table-container tr.active td {
+    background-color:rgba(68, 68, 155, 0.0352941176);
+    color:#44449B;
+    font-weight:bold;
+    vertical-align: middle;
+    border: 1px solid #ECEDF4  !important;
+}
+
+/* Style for hover effect on table cells */
+.table-container tr:hover td {
+    background-color: rgba(68, 68, 155, 0.0352941176);
+    color:#44449B;
+    vertical-align: middle;
+    border: 1px solid #ECEDF4  !important;
+}
+/* Icon Size */
+.page-link .icon {
+    font-size: 24px; 
+}
+.page-item .page-link {
+    padding-top: 0px;
+    
+    padding-bottom: 0px;
+}
+/* Page Item Hover Color */
+.page-item:hover .page-link {
+    background-color: #f8f9fa; /* Change to your desired hover color */
+}

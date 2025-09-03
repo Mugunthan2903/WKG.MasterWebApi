@@ -1,0 +1,57 @@
+{
+  "homepage": ".",
+  "name": "WKG-master",
+  "version": "0.1.7",
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@googlemaps/js-api-loader": "^1.16.6",
+    "@popperjs/core": "^2.11.8",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.3",
+    "fast-sort": "^3.4.0",
+    "jquery": "^3.7.1",
+    "moment": "^2.30.1",
+    "popper": "^1.0.1",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.69.7",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "prebuild": "node check-version.js",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "watch-css": "sass --watch --update --style=expanded src/scss:src/assets/css",
+    "build-css": "sass --no-source-map --style=compressed src/scss:src/assets/css"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

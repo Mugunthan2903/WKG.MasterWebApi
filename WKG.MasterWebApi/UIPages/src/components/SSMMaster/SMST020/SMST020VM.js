@@ -1,0 +1,518 @@
+import { Utils, ApiManager, WKLMessageboxTypes, WKLWindowStyles, VMBase } from "../../../wkl-components";
+
+export default class SMST020VM extends VMBase {
+    constructor(props) {
+        super(props);
+        this._WebApi = 'SMST020';
+        this.init();
+    }
+
+    // Initialize the view model
+    init() {
+        // Check if the Data object is empty before initializing
+        if (Object.keys(this.Data).length !== 0) return;
+
+        // Initialize model properties
+        const model = this.Data;
+        model.FormID = "SMST020";
+        model.IsSaved = false;
+        model.Title = '';
+        model.Loading = false;
+        model.DataCopy = null;
+        model.SearchInput = {
+            SMST020_Lng: null,
+            Pord_Name: "",
+            SMST020_StatusSrch: true,
+            SMST020_Prd_aval: null,
+
+        };
+        model.Input = {
+            SMST020_Mpid: null,
+            SMST020_prd_endpt: null,
+            SMST020_sndx_endpt: null,
+            SMST020_pull_dt: '',
+            StatusN: null,
+            mod_dttm: "",
+            mod_by_usr_cd: "",
+            IsEdit: false
+
+        };
+        model.SMST020_Lnglist = [];
+        model.SMST020_prd_endpt_list = [];
+        model.SMST020_sndx_endpt_list = [];
+        //model.AllSelected = false;
+        model.GridInfo = {
+            Items: [],
+            Page: 1,
+            TotalPage: 0,
+            TotalCount: 0,
+            SelectedItem: null,
+            PageSize: 12,
+            Columns: [
+                { text: 'Name', field: 'tui_prod_nam', width: '40%', sort: { enabled: true } },
+                { text: 'City', field: 'tui_city_nam', width: '20%' },
+                { text: 'Status', field: 'act_inact_ind', width: '13%' },
+                { text: 'Tui Product Available', field: 'tui_prod_aval', width: '13%' },
+                { text: '', field: 'Text', width: '14%' }
+
+
+            ]
+        };
+
+        // Set the view mode to new
+        this.newMode(false);
+    }
+    //open New Window
+    openWindow(Sload, pid) {
+
+        if (Sload == "City") {
+            this.showWindow({
+                url: 'SSMMaster/SMST021', data: { InputData: "" }, windowStyle: WKLWindowStyles.slideLeft, onClose: (e) => {
+                    if (e)
+                        alert(`On window close Data: ${JSON.stringify(e)}`);
+                }
+            });
+        }
+        else if (Sload == "Category") {
+            this.showWindow({
+                url: 'SSMMaster/SMST022', data: { Title: "SMST022" }, windowStyle: WKLWindowStyles.slideLeft, onClose: (e) => {
+                    if (e)
+                        alert(`On window close Data: ${JSON.stringify(e)}`);
+
+                }
+            });
+        }
+        else if (Sload == "Exptation") {
+            this.showWindow({
+                url: 'SSMMaster/SMST023', data: { InputData: pid }, windowStyle: WKLWindowStyles.slideLeft, onClose: (e) => {
+                    if (e)
+                        alert(`On window close Data: ${JSON.stringify(e)}`);
+
+                }
+            });
+        }
+
+    }
+
+
+    // Set the title based on whether it's in edit mode or new mode
+    setTitle() {
+        const model = this.Data;
+        model.Title = model.Input.IsEdit ? `Tui Product / Edit / ${model.Input.SMST020_Mpid.Text}` : `Tui Product`;
+    }
+
+    // Load initial data when the page is initialized
+    loadInitData() {
+        this.IniloadPage(1, () => { });
+    }
+
+    // Handle search button click
+    handleSearch() {
+        const model = this.Data;
+        const me = this;
+        if (Utils.isNullOrEmpty(model.SearchInput.SMST020_Lng)) {
+            me.showAlert("Select Language Please", 'SMST020_Lng');
+
+        }
+        else {
+            this.IniloadPage(1, () => { });
+        }
+    }
+    showAlert(errorMsg, name) {
+        if (typeof errorMsg === 'number')
+            errorMsg = Utils.getMessage(errorMsg);
+
+        const me = this;
+        const opt = {
+            text: errorMsg,
+            messageboxType: WKLMessageboxTypes.question
+        };
+        if (name) {
+            opt.onClose = (_e) => {
+                me.setFocus(name);
+            }
+        }
+        this.showMessageBox(opt);
+    }
+
+    // Load data for the initial page
+    IniloadPage(pageIndex, columnOptions = null) {
+        const model = this.Data;
+        const gridInfo = model.GridInfo;
+        const selectedItem = gridInfo.SelectedItem;
+        const dataInfo = {
+            PageNo: pageIndex,
+            PageSize: gridInfo.PageSize
+        }
+        dataInfo.lang_cd = model.SearchInput.SMST020_Lng;
+        dataInfo.tui_prod_nam = model.SearchInput.Pord_Name;
+        dataInfo.act_inact_ind = model.SearchInput.SMST020_StatusSrch === true ? 1 : 0;
+        dataInfo.tui_prod_aval = model.SearchInput.SMST020_Prd_aval === true ? 1 : 0;
+        //Status: model.SearchInput.IsActive === true ? 1 : 0,
+
+
+        dataInfo.SortTyp = true;
+        columnOptions = columnOptions || [];
+        if (columnOptions.length > 0) {
+            for (const itm of columnOptions) {
+                if (itm.field === "tui_prod_nam" && !Utils.isNullOrEmpty(itm.sort)) {
+                    dataInfo.SortTyp = itm.sort === 'asc';
+                }
+            }
+        }
+        model.Loading = true;
+        this.updateUI();
+        // Make an AJAX request to fetch data
+        Utils.ajax({ url: `${this._WebApi}/SMST020_Srchcmbproduct`, data: dataInfo }, (r) => {
+            try {
+                // Process the response data
+                console.log(r);
+                model.Loading = false;
+                model.SMST020_Lnglist = r.Lng_cmb_rslt.map(value => ({ ID: value.lang_cd, Text: value.lang_nam }));
+                model.SearchInput.SMST020_Lng = { ID: "en-GB", Text: "English GB" }
+
+                this.fillSearchResult(r || {}, selectedItem);
+            } catch (ex) {
+                console.error(ex);
+            } finally {
+                this.updateUI();
+            }
+        });
+    }
+
+    // Fill the search result table
+    fillSearchResult(r, selectedItem = null) {
+        const model = this.Data;
+        const gridInfo = model.GridInfo;
+        gridInfo.Items = r.srch_rslt.map(e => ({
+            ...e,
+            act_inact_ind: e.act_inact_ind === "True" ? "Active" : "InActive",
+            tui_prod_aval: e.tui_prod_aval === "True" ? "Yes" : "No"
+        })) || [];
+        gridInfo.Page = r.CurrentPage || 0;
+        gridInfo.TotalPage = r.TotalPages || 0;
+        gridInfo.TotalCount = r.TotalCount || 0;
+        // Handle selected item logic
+        if (gridInfo.Items.length > 0) {
+            if (selectedItem !== undefined && selectedItem !== null) {
+                selectedItem = gridInfo.Items.find(i => i.ID === selectedItem.ID);
+            }
+            if (selectedItem === null) selectedItem = gridInfo.Items[0];
+        }
+        if (selectedItem != null) selectedItem.isSelected = true;
+        gridInfo.SelectedItem = selectedItem;
+    }
+
+    // Set selected item in the grid
+    setSelectedItem(selectedItem, loadData = false) {
+        const model = this.Data;
+        model.GridInfo.SelectedItem = selectedItem;
+        model.GridInfo.SelectedItem.isSelected = true;
+        if (loadData === true) this.loadSelectedData(selectedItem.supp_map_id);
+    }
+
+    // Handle search clear button click
+    handleSearchClear() {
+        this.doSearchClear(true);
+    }
+
+    // Clear search results
+    doSearchClear(clearAll = false) {
+        const model = this.Data;
+        const gridInfo = model.GridInfo;
+        if (clearAll === true) model.SearchInput.IsActive = true;
+        gridInfo.Items = [];
+        gridInfo.SelectedItem = null;
+        this.updateUI();
+    }
+
+    // model.Input = {
+    //     SMST020_Mpid: null,
+    //     SMST020_prd_endpt: null,
+    //     SMST020_sndx_endpt: null,
+    //     SMST020_pull_dt: '',
+    //     StatusN: null,
+    //     mod_dttm: "",
+    //     mod_by_usr_cd: "",
+    //     IsEdit: false
+
+    // };
+    // Set view mode to new changes
+    newMode(setFocus = true, callback) {
+        const model = this.Data;
+        model.Input.SMST020_Mpid = null;
+        model.Input.SMST020_prd_endpt = null;
+        model.Input.SMST020_sndx_endpt = null;
+        model.Input.SMST020_pull_dt = "";
+        model.Input.StatusN = true;
+        model.Input.ModifiedOn = null;
+        model.Input.IsEdit = false;
+        this.setTitle();
+        if (setFocus === true) this.setFocus('SMST020_Mpid');
+        var dataCopyEx = this.getData();
+        model.DataCopy = JSON.stringify(dataCopyEx);
+        this.updateUI();
+        Utils.invoke(callback);
+    }
+
+    // Handle data change
+    handleDataChange(selectedItem) {
+        const me = this;
+        const model = this.Data;
+        let isNew = true;
+        if (selectedItem) {
+            if (selectedItem.supp_map_id === model.Input.SMST020_Mpid) {
+                // this.setFocus('SMST020_Mpid');
+                return;
+            }
+            isNew = false;
+        }
+
+        if (this.isValueChanged()) {
+            this.showConfirmation("Do you want to save the current data ?", true, (_e) => {
+                try {
+                    if (_e === 0) {
+                        me.doSave();
+                    }
+                    else if (_e === 1) {
+                        if (selectedItem)
+                            me.setSelectedItem(selectedItem, true);
+                        else
+                            me.newMode(false);
+                    }
+                }
+                catch (ex) {
+
+                }
+                finally { }
+            });
+        }
+        else {
+            if (selectedItem)
+                this.setSelectedItem(selectedItem, true);
+            else
+                this.newMode();
+        }
+    }
+    // show confirmation message 
+    showConfirmation(text, isThreeOption, callback) {
+        let options = [{ text: 'Yes' }, { text: 'No' }];
+        if (isThreeOption)
+            options = [{ text: 'Yes' }, { text: 'No' }, { text: 'Cancel' }];
+
+        this.showMessageBox({
+            text: text,
+            buttons: options,
+            messageboxType: WKLMessageboxTypes.question,
+            onClose: callback
+        });
+    }
+
+    // Set focus on specified textbox
+    setFocus(Txtbxname) {
+        if (this.ComponentRef);
+        this.ComponentRef.setFocus(Txtbxname);
+    }
+
+    // Check if data has been changed
+    isValueChanged(e) {
+        let dataCopyEx = this.getData();
+        if (e === 1) {
+            dataCopyEx = this.isRequiredFieldsEmpty();
+        }
+        return JSON.stringify(dataCopyEx) !== this.Data.DataCopy;
+    }
+
+    // Load selected data
+    loadSelectedData(id) {
+        const me = this;
+        const model = this.Data.Input;
+        const dataInfo = { supp_map_id: id };
+        me.Data.Loading = true;
+        this.updateUI();
+        Utils.ajax({ url: `${me._WebApi}/SMST020_Edittabledata`, data: dataInfo }, (r) => {
+            try {
+                me.Data.Loading = false;
+                if (r) {
+                    r = r[0];
+                    model.SMST020_Mpid = r.supp_map_id === null ? null : { ID: r.supp_map_id, Text: r.supp_map_id };
+                    model.SMST020_prd_endpt = r.prod_end_pnt_nam === null ? null : { ID: r.prod_end_pnt_nam, Text: r.prod_end_pnt_nam };
+                    model.SMST020_sndx_endpt = r.sndbx_end_pnt_nam === null ? null : { ID: r.sndbx_end_pnt_nam, Text: r.sndbx_end_pnt_nam };
+                    model.StatusN = r.act_inact_ind === "True";
+                    model.SMST020_pull_dt = r.lst_pull_dt || "";
+                    model.mod_dttm = r.mod_dttm;
+                    model.mod_by_usr_cd = r.mod_by_usr_cd;
+                    model.IsEdit = true;
+                } else {
+                    model.SMST020_Mpid = null;
+                    model.SMST020_prd_endpt = null;
+                    model.SMST020_sndx_endpt = null;
+                    model.StatusN = true;
+                    model.SMST020_pull_dt = '';
+                    model.Input.IsEdit = true;
+                }
+                me.setTitle();
+                const dataCopyEx = this.getData();
+                this.Data.DataCopy = JSON.stringify(dataCopyEx);
+                // this.setFocus('SMST020_prd_endpt');
+            } catch (ex) {
+                console.error(ex);
+            } finally {
+                this.updateUI();
+            }
+        });
+    }
+
+    // Get rendering form Data
+    getData() {
+        const model = this.Data.Input;
+        const dataInfo = {};
+        // if ( this.Data.GridInfo.SelectedItem !=""  ) {
+        //     dataInfo.ISEdit = true;
+        // }
+        // else {
+        //     dataInfo.ISEdit = false;
+        // }
+        dataInfo.act_inact_ind = model.StatusN;
+        // dataInfo.mod_by_usr_cd= ApiManager.getUser().ID;
+        if (!Utils.isNullOrEmpty(model.ModifiedOn)) {
+            dataInfo.ModifiedOn = model.ModifiedOn;
+        }
+        if (!Utils.isNullOrEmpty(model.SMST020_Mpid)) {
+            dataInfo.supp_map_id = model.SMST020_Mpid.ID;
+        }
+        if (!Utils.isNullOrEmpty(model.SMST020_prd_endpt)) {
+            dataInfo.sndbx_end_pnt_nam = model.SMST020_prd_endpt.ID;
+        }
+        if (!Utils.isNullOrEmpty(model.SMST020_sndx_endpt)) {
+            dataInfo.prod_end_pnt_nam = model.SMST020_sndx_endpt.ID;
+        }
+        return dataInfo;
+    }
+
+    // Handle save function
+    handleSave(e) {
+        const model = this.Data.Input;
+        if (this.isValueChanged()) {
+            this.doSave(e);
+        }
+        else {
+            if (model.SMST020_Mpid === null) {
+                const me = this;
+                const opts = {
+                    text: "Please Enter Supplier Map Id",
+                    messageboxType: WKLMessageboxTypes.info,
+                    onClose: (_e) => {
+                        me.setFocus("SMST020_Mpid");
+                    }
+                };
+                this.showMessageBox(opts);
+                return;
+
+            } else {
+                const me = this;
+                const opts = {
+                    text: "Existing Data Conflict!",
+                    messageboxType: WKLMessageboxTypes.info,
+                    onClose: (_e) => { }
+                };
+                this.showMessageBox(opts);
+                return;
+            }
+        }
+    }
+    isvalidSave(e) {
+        const me = this;
+        const model = this.Data.Input;
+        if (Utils.isNullOrEmpty(model.SMST020_Mpid)) {
+            this.showMessageBox({
+                text: "Please Enter Supplier Map Id",
+                messageboxType: WKLMessageboxTypes.info,
+                onClose: (_e) => {
+                    me.setFocus('SMST020_Mpid');
+                }
+            });
+            return false;
+        }
+        return true;
+    }
+    // On save DB
+    doSave(e) {
+        if (this.isvalidSave(e)) {
+            const me = this;
+            const model = this.Data;
+            const dataInfo = this.getData();
+            // dataInfo.ModifiedBy = e.userID || 0;
+            let pageNo = model.GridInfo.Page;
+            dataInfo.Mode = model.Input.IsEdit ? "UPDATE" : "INSERT";
+            dataInfo.mod_by_usr_cd = ApiManager.getUser().ID;
+            model.Loading = true;
+            me.updateUI();
+            Utils.ajax({ url: `${this._WebApi}/SMST020SaveAsync`, data: dataInfo }, r => {
+                try {
+                    model.Loading = false;
+                    r = r || {};
+                    if (r.IsSuccess === true) {
+                        const opts = {
+                            text: "Data Saved Successfully",
+                            messageboxType: WKLMessageboxTypes.info,
+                            onClose: (_e) => {
+                                me.handleSearch();
+                                me.newMode();
+                            }
+                        };
+                        this.showMessageBox(opts);
+                    }
+                    else {
+                        const opts = {
+                            text: "Something went Wrong",
+                            messageboxType: WKLMessageboxTypes.info,
+                            onClose: (_e) => {
+                            }
+                        };
+                        this.showMessageBox(opts);
+                    }
+                }
+                catch (ex) {
+                    console.log(ex);
+                }
+                finally {
+                    me.updateUI();
+                }
+            });
+        }
+    }
+
+
+    isRequiredFieldsEmpty() {
+        const model = this.Data.Input;
+        const dataInfo = {};
+        dataInfo.SMST020_Mpid = model.SMST020_Mpid;
+        dataInfo.SMST020_prd_endpt = model.SMST020_prd_endpt;
+        dataInfo.SMST020_sndx_endpt = model.SMST020_sndx_endpt;
+        dataInfo.SMST020_pull_dt = model.SMST020_pull_dt;
+        dataInfo.StatusN = model.StatusN;
+        return dataInfo;
+    }
+
+    doClose() {
+        const me = this;
+        if (this.isValueChanged()) {
+            let options = [{ text: 'Yes' }, { text: 'No' }];
+            this.showMessageBox({
+                text: "Do you want to Discard the changes?",
+                buttons: options,
+                messageboxType: WKLMessageboxTypes.info,
+                onClose: (_e) => {
+                    if (_e === 0) {
+                        me.close();
+                    }
+                }
+            });
+        }
+        else {
+            this.close()
+        }
+    }
+}
+
