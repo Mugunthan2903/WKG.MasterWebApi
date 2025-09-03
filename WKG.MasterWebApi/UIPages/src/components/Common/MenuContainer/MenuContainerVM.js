@@ -52,6 +52,7 @@ export class MenuContainerVM extends VMBase {
         let mnu2 = this.getMenuItem('SSM', 'SSM', false);
 
         mnu2.Items.push(this.getMenuItem(`SSM010`, `Group Master`, true));
+        mnu2.Items.push(this.getMenuItem(`SSM200`, `Group Master Copy`, true));
         mnu2.Items.push(this.getMenuItem(`SSM005`, `Refresh SSM`, true));
         mnu2.Items.push(this.getMenuItem(`SSM040`, `Data Master`, true));
         mnu2.Items.push(this.getMenuItem(`SSM090`, `Arena Location Details`, true));

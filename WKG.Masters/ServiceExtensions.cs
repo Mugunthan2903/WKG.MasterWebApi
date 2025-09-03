@@ -42,6 +42,7 @@ namespace WKG.Masters
             services.AddScoped<ISSM130Service, SSM130Service>();
             services.AddScoped<ISSM150Service, SSM150Service>();
             services.AddScoped<ISSM160Service, SSM160Service>();
+            services.AddScoped<ISSM200Service, SSM200Service>();
 
             services.AddScoped<ITypeSearchService, TypeSearchService>();
 
